@@ -33,7 +33,7 @@ function turnLeft(rover) {
     }
     console.log(` Rover est va vers ${rover.direction}`);
 }
-console.log(turnLeft(rover))
+console.log(turnLeft(rover));
 
 ///va vers la droite 
 function turnRight(rover) {
@@ -55,4 +55,47 @@ function turnRight(rover) {
 }
 
 
-console.log(turnRight(rover))
+
+/// avancer 
+function moveForward(rover) {
+    //Variables
+    var locationX = rover.location.x;
+    var locationY = rover.location.y;
+    var roverDir = rover.direction;
+    var roverInfoConsole = `Current rover position is x:${locationX} y:${locationY}
+                  Current rover direction is ${roverDir} `;
+    // Moves  
+    if ((roverDir === "N" && locationY <= 0) ||
+        (roverDir === "E" && locationX >= 1) ||
+        (roverDir === "S" && locationY >= 9) ||
+        (roverDir === "W" && locationX <= 0)) {
+
+        console.log(`Cannot move in that direction. The rover would move to a restricted area.
+                  ${roverInfoConsole}`);
+
+        //allowed moves
+        //North
+    } else if (roverDir === "N" && locationY <= 10) {
+        locationY = locationY - 1;
+        console.log(`moveForward was called. 
+                     Current rover position is x:${locationX} y:${locationY}
+                  Current rover direction is ${roverDir} `);
+        //East
+    } else if (roverDir === "E" && locationX < 10) {
+        locationX = locationX + 1;
+        console.log(`Current rover position is x:${locationX} y:${locationY}
+                  Current rover direction is ${roverDir} `);
+        //South
+    } else if (roverDir === "S" && locationY < 10) {
+        locationY = locationY + 1;
+        console.log(`moveForward was called. 
+                     Current rover position is x:${locationX} y:${locationY}
+                  Current rover direction is ${roverDir} `);
+        //West
+    } else if (roverDir === "W" && locationX < 10) {
+        locationX = locationX - 1;
+        console.log(`moveForward was called. 
+                     Current rover position is x:${locationX} y:${locationY}
+                  Current rover direction is ${roverDir} `);
+    }
+};
