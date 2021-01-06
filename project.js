@@ -31,10 +31,7 @@ function turnLeft(rover) {
             rover.direction = "N";
             break;
     }
-    console.log(` Rover est va vers ${rover.direction}`);
 }
-console.log(turnLeft(rover));
-
 ///va vers la droite 
 function turnRight(rover) {
     switch (rover.direction) {
@@ -51,10 +48,8 @@ function turnRight(rover) {
             rover.direction = "N";
             break;
     }
-    console.log(` Rover est va vers ${rover.direction}`);
+
 }
-
-
 
 /// avancer 
 function moveForward(rover) {
@@ -66,7 +61,7 @@ function moveForward(rover) {
                   Current rover direction is ${roverDir} `;
     // Moves  
     if ((roverDir === "N" && locationY <= 0) ||
-        (roverDir === "E" && locationX >= 1) ||
+        (roverDir === "E" && locationX >= 9) ||
         (roverDir === "S" && locationY >= 9) ||
         (roverDir === "W" && locationX <= 0)) {
 
@@ -75,27 +70,31 @@ function moveForward(rover) {
 
         //allowed moves
         //North
-    } else if (roverDir === "N" && locationY <= 10) {
-        locationY = locationY - 1;
+    } else if (roverDir === "N" && locationY <= 9) {
+        rover.location.y = rover.location.y - 1;
         console.log(`moveForward was called. 
                      Current rover position is x:${locationX} y:${locationY}
                   Current rover direction is ${roverDir} `);
         //East
-    } else if (roverDir === "E" && locationX < 10) {
-        locationX = locationX + 1;
+    } else if (roverDir === "E" && locationX < 9) {
+        rover.location.x = rover.location.x + 1;
         console.log(`Current rover position is x:${locationX} y:${locationY}
                   Current rover direction is ${roverDir} `);
         //South
-    } else if (roverDir === "S" && locationY < 10) {
-        locationY = locationY + 1;
+    } else if (roverDir === "S" && locationY < 9) {
+        rover.location.y = rover.location.y + 1;
         console.log(`moveForward was called. 
                      Current rover position is x:${locationX} y:${locationY}
                   Current rover direction is ${roverDir} `);
         //West
-    } else if (roverDir === "W" && locationX < 10) {
-        locationX = locationX - 1;
+    } else if (roverDir === "W" && locationX < 9) {
+        rover.location.x = rover.location.x - 1;
         console.log(`moveForward was called. 
                      Current rover position is x:${locationX} y:${locationY}
                   Current rover direction is ${roverDir} `);
     }
 };
+turnRight(rover)
+console.log(rover)
+moveForward(rover)
+console.log(rover)
