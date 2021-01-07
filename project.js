@@ -1,3 +1,4 @@
+var prompt = require('prompt');
 var grid = [
     [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
     [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
@@ -89,26 +90,39 @@ function moveForward(rover) {
 };
 
 
-function pilotRover(string) {
-    var commande = string;
-    for (i = 0; i < commande.length; i++) {
-        if (commande.charAt(i) === "f") {
-            moveForward(rover)
-            console.log(rover)
-        } else if (commande.charAt(i) === "l") {
-            turnLeft(rover)
-            console.log(rover)
-        } else if (commande.charAt(i) === "r") {
-            turnRight(rover)
-            console.log(rover)
-        } else {
-            console.log("This not a command");
+var commande = [];
+
+
+var schema = {
+    properties: {
+        commands: {
+            message: "try to pilot the rover using the letters r, l and f "
+
         }
-        rover.travelLog.push({ x: rover.location.x, y: rover.location.y, d: rover.direction })
     }
-
 }
+prompt.start();
 
+function pilotRover() {
+    prompt.get(schema, (err, result) => {
 
-pilotRover("rf")
-console.log(rover.travelLog)
+        for (var i = 0; i < result.commands.length; i++) {
+            if (result.commands[i] === "f") {
+                moveForward(rover)
+                console.log(rover)
+            } else if (result.commands[i] === "l") {
+                turnLeft(rover)
+                console.log(rover)
+            } else if (result.commands[i] === "r") {
+                turnRight(rover)
+                console.log(rover)
+            } else {
+                console.log("This not a command");
+            }
+            rover.travelLog.push({ x: rover.location.x, y: rover.location.y, d: rover.direction })
+            pilotRover()
+        }
+
+    })
+}
+pilotRover()
