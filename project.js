@@ -13,7 +13,8 @@ var grid = [
 
 var rover = {
         direction: "N",
-        location: { x: 0, y: 0 }
+        location: { x: 0, y: 0 },
+        //travelLog: [],
     }
     ///va vers la gauche
 function turnLeft(rover) {
@@ -57,8 +58,7 @@ function moveForward(rover) {
     var locationX = rover.location.x;
     var locationY = rover.location.y;
     var roverDir = rover.direction;
-    var roverInfoConsole = `Current rover position is x:${locationX} y:${locationY}
-                  Current rover direction is ${roverDir} `;
+    var roverInfoConsole = `Current rover position is x:${locationX} y:${locationY}  Current rover direction is ${roverDir} `;
     // Moves  
     if ((roverDir === "N" && locationY <= 0) ||
         (roverDir === "E" && locationX >= 9) ||
@@ -72,29 +72,42 @@ function moveForward(rover) {
         //North
     } else if (roverDir === "N" && locationY <= 9) {
         rover.location.y = rover.location.y - 1;
-        console.log(`moveForward was called. 
-                     Current rover position is x:${locationX} y:${locationY}
-                  Current rover direction is ${roverDir} `);
+        console.log(roverInfoConsole);
         //East
     } else if (roverDir === "E" && locationX < 9) {
         rover.location.x = rover.location.x + 1;
-        console.log(`Current rover position is x:${locationX} y:${locationY}
-                  Current rover direction is ${roverDir} `);
+        console.log(roverInfoConsole);
         //South
     } else if (roverDir === "S" && locationY < 9) {
         rover.location.y = rover.location.y + 1;
-        console.log(`moveForward was called. 
-                     Current rover position is x:${locationX} y:${locationY}
-                  Current rover direction is ${roverDir} `);
+        console.log(roverInfoConsole);
         //West
     } else if (roverDir === "W" && locationX < 9) {
         rover.location.x = rover.location.x - 1;
-        console.log(`moveForward was called. 
-                     Current rover position is x:${locationX} y:${locationY}
-                  Current rover direction is ${roverDir} `);
+        console.log(roverInfoConsole);
     }
 };
-turnRight(rover)
-console.log(rover)
-moveForward(rover)
-console.log(rover)
+
+
+function pilotRover(string) {
+    var commande = string;
+    for (i = 0; i < commande.length; i++) {
+        if (commande.charAt(i) === "f") {
+            moveForward(rover)
+            console.log(rover)
+        } else if (commande.charAt(i) === "l") {
+            turnLeft(rover)
+            console.log(rover)
+        } else if (commande.charAt(i) === "r") {
+            turnRight(rover)
+            console.log(rover)
+        } else {
+            console.log("This not a command");
+        }
+
+
+    }
+}
+
+
+pilotRover("rfs")
