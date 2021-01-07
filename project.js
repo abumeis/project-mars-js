@@ -92,7 +92,7 @@ function moveForward(rover) {
 
 
 
-
+///prompt
 var schema = {
     properties: {
         commands: {
