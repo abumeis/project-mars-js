@@ -3,5 +3,45 @@ alors il a les quatres dirctions Nord, est, sud et ouest
 
 alors les nord represent le Y est sa valeur et 0
 est represent le X est sa valeur et 0
-nord represent le Y est sa valeur et 10
-nord represent le Y est sa valeur et 10
+ouest represent le Y est sa valeur et 9
+sud represent le Y est sa valeur et 9
+
+
+    ///va vers la gauche
+function turnLeft(rover) {
+    switch (rover.direction) {
+        case "N":
+            rover.direction = "W";
+            break;
+        case "W":
+            rover.direction = "S";
+            break;
+        case "S":
+            rover.direction = "E";
+            break;
+        case "E":
+            rover.direction = "N";
+            break;
+    }
+    console.log(` Rover est va vers ${rover.direction}`);
+}
+console.log(turnLeft(rover));
+
+///va vers la droite 
+function turnRight(rover) {
+    switch (rover.direction) {
+        case "N":
+            rover.direction = "E";
+            break;
+        case "E":
+            rover.direction = "S";
+            break;
+        case "S":
+            rover.direction = "W";
+            break;
+        case "W":
+            rover.direction = "N";
+            break;
+    }
+    console.log(` Rover est va vers ${rover.direction}`);
+}
