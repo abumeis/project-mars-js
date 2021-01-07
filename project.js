@@ -90,7 +90,7 @@ function moveForward(rover) {
 };
 
 
-var commande = [];
+
 
 
 var schema = {
@@ -105,7 +105,6 @@ prompt.start();
 
 function pilotRover() {
     prompt.get(schema, (err, result) => {
-
         for (var i = 0; i < result.commands.length; i++) {
             if (result.commands[i] === "f") {
                 moveForward(rover)
