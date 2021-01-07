@@ -149,7 +149,7 @@ function pilotRover() {
                 turnRight(rover)
                 console.log(rover)
             } else {
-                console.log("This not a command");
+                console.log("Error, This not a command");
             }
             rover.travelLog.push({ x: rover.location.x, y: rover.location.y, d: rover.direction })
         }
