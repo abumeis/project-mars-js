@@ -14,7 +14,7 @@ var grid = [
 var rover = {
         direction: "N",
         location: { x: 0, y: 0 },
-        //travelLog: [],
+        travelLog: [],
     }
     ///va vers la gauche
 function turnLeft(rover) {
@@ -104,10 +104,11 @@ function pilotRover(string) {
         } else {
             console.log("This not a command");
         }
-
-
+        rover.travelLog.push({ x: rover.location.x, y: rover.location.y, d: rover.direction })
     }
+
 }
 
 
-pilotRover("rfs")
+pilotRover("rf")
+console.log(rover.travelLog)
