@@ -90,6 +90,36 @@ function moveForward(rover) {
 };
 
 
+//reculer 
+function moveBackward(rover) {
+    var locationX = rover.location.x;
+    var locationY = rover.location.y;
+    var roverDir = rover.direction;
+    var roverInfoConsole = `Current rover position is x:${locationX} y:${locationY}  Current rover direction is ${roverDir} `;
+
+
+    if (roverDir === "N" && locationY <= 9) {
+        rover.location.y = rover.location.y + 1;
+        console.log(roverInfoConsole);
+        //East
+    } else if (roverDir === "E" && locationX < 9) {
+        rover.location.x = rover.location.x - 1;
+        console.log(roverInfoConsole);
+        //South
+    } else if (roverDir === "S" && locationY < 9) {
+        rover.location.y = rover.location.y - 1;
+        console.log(roverInfoConsole);
+        //West
+    } else if (roverDir === "W" && locationX < 9) {
+        rover.location.x = rover.location.x + 1;
+    }
+}
+
+
+
+
+
+
 
 
 ///prompt
@@ -109,6 +139,9 @@ function pilotRover() {
             if (result.commands[i] === "f") {
                 moveForward(rover)
                 console.log(rover)
+            } else if (result.commands[i] === "b") {
+                moveBackward(rover)
+                console.log(rover)
             } else if (result.commands[i] === "l") {
                 turnLeft(rover)
                 console.log(rover)
@@ -119,7 +152,6 @@ function pilotRover() {
                 console.log("This not a command");
             }
             rover.travelLog.push({ x: rover.location.x, y: rover.location.y, d: rover.direction })
-            pilotRover()
         }
 
     })
